@@ -42,21 +42,26 @@ job('NodeJS Docker example') {
             skipDecorate()
         }
     }
-pipelineJob('boilerplate-pipeline') {
 
-    triggers{
-        scm('H/5 * * * *')
-    }
+pipelineJob('DSL_Pipeline') {
 
-    definition{
-        cpsScm{
-            scm {
-                git('https://github.com/Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
-                            node / gitConfigName('Geulmaster')
-                            node / gitConfigEmail('eyal.geulayev@gmail.com')
-                        }
-                scriptPath("./basics/misc/Jenkinsfile")
-            }
+  def repo = 'https://github.com/Geulmaster/docker-cicd.git'
+
+  triggers {
+    scm('H/5 * * * *')
+  }
+  description("Pipeline for $repo")
+
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote { url(repo) }
+          branches('master')
+          scriptPath('./basics/misc/Jenkinsfile')
+          extensions { }  // required as otherwise it may try to tag the repo, which you may not want
         }
+      }
     }
+  }
 }
