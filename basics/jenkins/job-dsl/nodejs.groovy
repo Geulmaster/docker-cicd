@@ -38,7 +38,7 @@ job('NodeJS Docker example') {
             forcePull(false)
             forceTag(false)
             createFingerprints(false)
-            skipDecorate() 
+            skipDecorate()
         }
     }
 }
