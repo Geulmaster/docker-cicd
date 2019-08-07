@@ -35,7 +35,7 @@ job('NodeJS Docker example') {
             repositoryName('geulmaster/docker-cicd') //qa / dev
             tag('${GIT_REVISION,length=9}')
             registryCredentials('dockerhub')
-            buildContext('jenkins')
+            buildContext('./basics')
             forcePull(false)
             forceTag(false)
             createFingerprints(false)
