@@ -1,6 +1,6 @@
 job('NodeJS example') {
     scm {
-        git('git@github.com:Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+        git('https://github.com/Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('Geulmaster')
             node / gitConfigEmail('eyal.geulayev@gmail.com')
         }
@@ -19,7 +19,7 @@ job('NodeJS example') {
 
 job('NodeJS Docker example') {
     scm {
-        git('git@github.com:Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+        git('https://github.com/Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
             node / gitConfigName('Geulmaster')
             node / gitConfigEmail('eyal.geulayev@gmail.com')
         }
