@@ -20,7 +20,12 @@ node {
      sh label: '', script: '''
       docker run --rm -tid --name docker_test -p 3000 geulmaster/nodedemo
       docker kill docker_test
+      PORT=$(docker inspect CONTAINER_NAME | jq -r '.[].NetworkSettings.Ports."3000/tcp"[].HostPort')
+      echo $PORT
+      curl -i localhost:$PORT
+
       
       '''
      }
+     
    }
