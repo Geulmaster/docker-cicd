@@ -1,8 +1,8 @@
 job('NodeJS example') {
     scm {
-        git('git://github.com/wardviaene/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
-            node / gitConfigName('DSL User')
-            node / gitConfigEmail('jenkins-dsl@newtech.academy')
+        git('git@github.com:Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+            node / gitConfigName('Geulmaster')
+            node / gitConfigEmail('eyal.geulayev@gmail.com')
         }
     }
     triggers {
@@ -19,20 +19,20 @@ job('NodeJS example') {
 
 job('NodeJS Docker example') {
     scm {
-        git('git://github.com/wardviaene/docker-demo.git') {  node -> // is hudson.plugins.git.GitSCM
-            node / gitConfigName('DSL User')
-            node / gitConfigEmail('jenkins-dsl@newtech.academy')
+        git('git@github.com:Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+            node / gitConfigName('Geulmaster')
+            node / gitConfigEmail('eyal.geulayev@gmail.com')
         }
     }
     triggers {
         scm('H/5 * * * *')
     }
     wrappers {
-        nodejs('nodejs-new') 
+        nodejs('nodejs') 
     }
     steps {
         dockerBuildAndPublish {
-            repositoryName('yanivomc/docker-nodejs-demo') //qa / dev
+            repositoryName('geulmaster/docker-cicd') //qa / dev
             tag('${GIT_REVISION,length=9}')
             registryCredentials('dockerhub')
             forcePull(false)
