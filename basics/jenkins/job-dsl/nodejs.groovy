@@ -42,4 +42,16 @@ job('NodeJS Docker example') {
             skipDecorate()
         }
     }
+pipelineJob('boilerplate-pipeline') {
+    definition{
+        cpsScm{
+            scm {
+                git('https://github.com/Geulmaster/docker-cicd.git') {  node -> // is hudson.plugins.git.GitSCM
+                    node / gitConfigName('Geulmaster')
+                    node / gitConfigEmail('eyal.geulayev@gmail.com')
+                }
+            scriptPath("./basics/misc/Jenkinsfile")
+            }
+        }
+    }
 }
